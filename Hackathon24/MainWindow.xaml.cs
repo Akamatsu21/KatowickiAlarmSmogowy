@@ -31,11 +31,14 @@ namespace Hackathon24
             data.Update();
             DataContext = data;
 
-            DispatcherTimer update = new DispatcherTimer(new TimeSpan(0, 30, 0), DispatcherPriority.Normal, delegate
-            {
+            DispatcherTimer update = new System.Windows.Threading.DispatcherTimer();
+            update.Tick += new EventHandler((o,e) => {
                 data.Update();
                 DataContext = data;
-            }, Dispatcher);
+            });
+            update.Interval = new TimeSpan(0, 30, 0);
+            update.Start();
+
 
             DispatcherTimer timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
             {
