@@ -14,6 +14,7 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
+<<<<<<< HEAD
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
@@ -124,6 +125,13 @@
     <Resource Include="images\katowice.png" />
     <Resource Include="images\kossutha.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\window.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
+=======
+
   <ItemGroup>
     <Resource Include="images\window.png" />
   </ItemGroup>

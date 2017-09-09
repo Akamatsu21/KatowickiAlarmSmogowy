@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using Hackathon24.Message;
 
 namespace Hackathon24.Message
+>>>>>>> 15525480d478d59209b53a29940264e3df868493
 {
 
     public static class Connection
