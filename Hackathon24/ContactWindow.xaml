@@ -20,8 +20,8 @@
             <TextBlock Text="Patryk Białas, kom. 606 73 90 37" />
             <TextBlock>
                 e-mail: 
-                <Hyperlink RequestNavigate="Hyperlink_RequestNavigate" NavigateUri="mailto://patryk.bialas@gmail.com">
-                    patryk.bialas@gmail.com
+                <Hyperlink RequestNavigate="Hyperlink_RequestNavigate" NavigateUri="mailto://patrykbialas@gmail.com">
+                    patrykbialas@gmail.com
                 </Hyperlink>
             </TextBlock>
             <TextBlock>
