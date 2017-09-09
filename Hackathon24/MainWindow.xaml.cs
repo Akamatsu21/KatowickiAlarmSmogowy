@@ -36,6 +36,7 @@ namespace Hackathon24
         private SmogDetails data;
         private Dictionary<Color, String> LongMessages;
         private Color mainAlert;
+        private SendEmail sendEmail;
 
         public MainWindow()
         {
@@ -46,7 +47,9 @@ namespace Hackathon24
             moreText.MouseLeftButtonDown += new MouseButtonEventHandler(moreText_MouseLeftButtonDown);
             businessCard.MouseLeftButtonDown += new MouseButtonEventHandler(businessCard_MouseLeftButtonDown);
 
+            sendEmail = new SendEmail();
             data = new SmogDetails();
+            data.Update();
             LongMessages = new Dictionary<Color, string>();
             LongMessages[Color.DARKRED] = "Kobiety w ciąży, dzieci, osoby starsze oraz osoby cierpiące na astmę, choroby płuc, alergiczne choroby skóry i oczu oraz choroby krążenia(stany pozawałowe i zaburzenia rytmu serca) powinny bezwzględnie ograniczyć do minimum czas przebywania, a szczególnie unikać wysiłku fizycznego na otwartym powietrzu. Pozostałym zaleca się rezygnację z wysiłku fizycznego na otwartym powietrzu i zaniechanie palenia papierosów. W przypadku pogorszenia stanu zdrowia należy skontaktować się z lekarzem.";
             LongMessages[Color.RED] = "Kobiety w ciąży, dzieci, osoby starsze oraz osoby cierpiące na astmę, choroby płuc, alergiczne choroby skóry i oczu oraz choroby krążenia (stany pozawałowe i zaburzenia rytmu serca) powinny ograniczyć do minimum czas przebywania, a szczególnie unikać wysiłku fizycznego na otwartym powietrzu. Pozostałym zaleca się unikanie wysiłku fizycznego na otwartym powietrzu i ograniczenie palenia papierosów. W przypadku pogorszenia stanu zdrowia należy skontaktować się z lekarzem.";
@@ -73,7 +76,7 @@ namespace Hackathon24
 
                 if (timeBlock.Text == "06:30:00" || timeBlock.Text == "17:00:00")
                 {
-                    SendEmail.SendMail();
+                    sendEmail.SendMail(LongMessages[mainAlert], data.p25Text, data.p10Text, data.so2Text);
                 }
             }, Dispatcher);
 

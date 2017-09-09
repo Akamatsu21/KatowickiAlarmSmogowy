@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hackathon24.Message;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
@@ -14,7 +15,7 @@ namespace Hackathon24
 {
     public class SendEmail
     {
-        public static void SendMail()
+        public void SendMail(string longMessage, string p25, string p10, string so2)
         {
             string data = DateTime.Now.ToString("dd.MM.yyyy");
             int period = DateTime.Now.Hour;
@@ -28,28 +29,28 @@ namespace Hackathon24
             foreach (var line in lines)
                 mail.To.Add(line);
 
-            data += period > 10 ? " Wieczorny" : " Poranny";
-            mail.Subject = data + " stan powietrza";
+            data += period > 10 ? "KATOWICKI ALARM SMOGOWY WIECZORNY" : " KATOWICKI ALARM SMOGOWY PORANNY";
+            mail.Subject = data;
 
             StringBuilder body = new StringBuilder(@"Szanowni Państwo,"); body.AppendLine().AppendLine();
-            body.Append(@"Przesyłam aktualne dane z aplikacji Katowicki Alarm Smogowy"); body.AppendLine().AppendLine();
-            body.Append(@"Długi komentarz"); body.AppendLine().AppendLine();
-            body.Append(@"Na podstawie stanu http://smog.imgw.pl/content/dust"); body.AppendLine().AppendLine();
-            body.Append(@"link do aktualności http://www.polskialarmsmogowy.pl/katowicki-alarm-smogowy,aktualnosci.html"); body.AppendLine(); body.AppendLine();
-
+            body.Append(@"Przesyłam aktualne dane dotyczące przekroczenia norm zanieczyszczenia powietrza:"); body.AppendLine().AppendLine();
+            
+            body.Append(@"Pył zawieszony 2,5: " + p25); body.AppendLine();
+            body.Append(@"Pył zawieszony 10: " + p10); body.AppendLine();
+            body.Append(@"Dwutlenek siarki: " + so2); body.AppendLine(); body.AppendLine();
+            body.Append(@"Komunikat:"); body.AppendLine(); 
+            body.Append(longMessage); body.AppendLine().AppendLine();
+            body.Append(@"Więcej informacy dostępnych w aplikacji Katowicki Alarm Smogowy."); body.AppendLine().AppendLine();
+            body.Append(@"Aktualności: www.polskialarmsmogowy.pl/katowicki-alarm-smogowy,aktualnosci.html"); body.AppendLine(); body.AppendLine();
             body.Append(@"Z poważaniem,"); body.AppendLine();
             body.Append(@"Patryk Białas"); body.AppendLine();
             body.Append(@"Katowicki Alarm Smogowy"); body.AppendLine();
             body.Append(@"kom. 606 739 037"); body.AppendLine();
             body.Append(@"e-mail: patrykbialas@gmail.com"); body.AppendLine();
-            body.Append(@"https://www.facebook.com/oczystepowietrze/ "); body.AppendLine();
-
+            body.Append(@"www.facebook.com/oczystepowietrze/ "); body.AppendLine();
 
             mail.Body = body.ToString();
 
-
-            //Attachment img = new Attachment(@"images\\smog.png");
-            //mail.Attachments.Add(img);
             SmtpServer.Port = 587;
 
             SmtpServer.Credentials = new System.Net.NetworkCredential("patrykbialas", "patram17");
