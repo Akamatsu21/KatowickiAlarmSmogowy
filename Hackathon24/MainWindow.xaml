@@ -21,8 +21,9 @@
         
         <Style x:Key="stateMessage" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Helvetica" />
-            <Setter Property="FontSize" Value="30" />
+            <Setter Property="FontSize" Value="18" />
             <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="TextWrapping" Value="Wrap" />
         </Style>
         
         <Style x:Key="smogButtonText" TargetType="TextBlock">
@@ -83,8 +84,8 @@
                 <Image Source="images\clock.png" Style="{StaticResource icon}" Margin="100, 0, 0, 0" />
                 <TextBlock Name="timeBlock" Style="{StaticResource timer}" />
             </WrapPanel>
-            <WrapPanel HorizontalAlignment="Center" Margin="0, 30, 0, 30">
-                <Image x:Name="StateIcon" Source="{Binding image}" Width="100" />
+            <WrapPanel HorizontalAlignment="Center" Margin="0, 10, 0, 0" Width="500" Height="120">
+                <Image x:Name="StateIcon" Source="{Binding image}" Width="100" Height="100" />
                 <StackPanel VerticalAlignment="Center">
                     <WrapPanel>
                         <TextBlock x:Name="StateLabel" Margin="15, 0, 0, 0" Text="STAN:" Style="{StaticResource stateMessage}" />
@@ -94,26 +95,26 @@
                 </StackPanel>
             </WrapPanel>
             <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Border Style="{StaticResource smogButton}" BorderBrush="{Binding p25Color}">
+                <Border Name="p25Button" Style="{StaticResource smogButton}" BorderBrush="{Binding p25Color}">
                     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                         <TextBlock Text="PM 2.5%" Style="{StaticResource smogButtonText}" />
                         <TextBlock Text="{Binding p25Text}" Style="{StaticResource smogButtonText}" Foreground="{Binding p25Color}" />
                     </StackPanel>
                 </Border>
-                <Border Style="{StaticResource smogButton}" BorderBrush="{Binding p10Color}">
+                <Border Name="p10Button" Style="{StaticResource smogButton}" BorderBrush="{Binding p10Color}">
                     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                         <TextBlock Text="PM 10%" Style="{StaticResource smogButtonText}" />
                         <TextBlock Text="{Binding p10Text}" Style="{StaticResource smogButtonText}" Foreground="{Binding p10Color}" />
                     </StackPanel>
                 </Border>
-                <Border Style="{StaticResource smogButton}" BorderBrush="{Binding so2Color}">
+                <Border Name="so2Button" Style="{StaticResource smogButton}" BorderBrush="{Binding so2Color}">
                     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                         <TextBlock Text="{Binding so2}" Style="{StaticResource smogButtonText}" />
                         <TextBlock Text="{Binding so2Text}" Style="{StaticResource smogButtonText}" Foreground="{Binding so2Color}" />
                     </StackPanel>
                 </Border>
             </WrapPanel>
-            <Border BorderThickness="2" CornerRadius="20" BorderBrush="Black" Width="180" Height="180" Margin="0, 10, 0, 0">
+            <Border BorderThickness="2" CornerRadius="20" BorderBrush="Black" Width="180" Height="180" Margin="0, 20, 0, 0">
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                     <TextBlock Style="{StaticResource menuText}">
                         <Hyperlink RequestNavigate="Hyperlink_RequestNavigate" Style="{StaticResource menuLink}" NavigateUri="http://www.polskialarmsmogowy.pl/polski-alarm-smogowy,zdrowie.html">
