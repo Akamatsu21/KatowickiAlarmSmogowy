@@ -38,31 +38,54 @@ namespace Hackathon24.Message
             so2 = "SO\u2082";
         }
 
-        private string PickColor(int proc)
+        private Color GetColor(int proc, int p)
         {
-            if (proc >= 200)
+            List<List<int> > numbers = new List<List<int> >();
+            numbers.Add(new List<int>() { 200, 100, 50, 40, 20 });
+            numbers.Add(new List<int>() { 120, 60, 30, 20, 10 });
+            numbers.Add(new List<int>() { 155, 135, 125, 75, 40 });
+            if (proc >= numbers[p][0])
             {
-                return "DarkRed";
+                return Color.DARKRED;
             }
-            else if (proc >= 100)
+            else if (proc >= numbers[p][1])
             {
-                return "Red";
+                return Color.RED;
             }
-            else if (proc >= 50)
+            else if (proc >= numbers[p][2])
             {
-                return "Orange";
+                return Color.ORANGE;
             }
-            else if (proc >= 40)
+            else if (proc >= numbers[p][3])
             {
-                return "Yellow";
+                return Color.YELLOW;
             }
-            else if (proc >= 20)
+            else if (proc >= numbers[p][4])
             {
-                return "Green";
+                return Color.GREEN;
             }
             else
             {
-                return "DarkGreen";
+                return Color.DARKGREEN;
+            }
+        }
+
+        private string PickColor(Color c)
+        {
+            switch(c)
+            {
+                case Color.DARKRED:
+                    return "DarkRed";
+                case Color.RED:
+                    return "Red";
+                case Color.ORANGE:
+                    return "Orange";
+                case Color.YELLOW:
+                    return "Yellow";
+                case Color.GREEN:
+                    return "Green";
+                default:
+                    return "DarkGreen";
             }
         }
 
@@ -75,55 +98,50 @@ namespace Hackathon24.Message
             _p10Proc = (int)(_p10Value % 50);
             _so2Proc = (int)(_so2Value % 350);
 
+            int maxpos = (_p25Proc >= _p10Proc ? 0 : 1);
             int max = (_p25Proc >= _p10Proc ? _p25Proc : _p10Proc);
+            maxpos = (max > _so2Proc ? maxpos : 2);
             max = (max > _so2Proc ? max : _so2Proc);
 
-            if (max >= 200)
+            mainColor = GetColor(max, maxpos);
+
+            switch(mainColor)
             {
-                state = "RYZYKOWNY";
-                message = "Dla własnego bezpieczeństwa nie oddychaj.";
-                image = "images\\nobreath.png";
-                mainColor = Color.DARKRED;
-            }
-            else if (max >= 100)
-            {
-                state = "BARDZO ZŁY";
-                message = "Zamknij okna i drzwi.";
-                image = "images\\window.png";
-                mainColor = Color.RED;
-            }
-            else if (max >= 50)
-            {
-                state = "ZŁY";
-                message = "Lepiej zostań na kompie.";
-                image = "images\\computer.png";
-                mainColor = Color.ORANGE;
-            }
-            else if(max >= 40)
-            {
-                state = "ŚREDNI";
-                message = "Kawa i ciastko z przyjacielem.";
-                image = "images\\cake.png";
-                mainColor = Color.YELLOW;
-            }
-            else if (max >= 20)
-            {
-                state = "DOBRY";
-                message = "A może na spacerek?";
-                image = "images\\stroll.png";
-                mainColor = Color.GREEN;
-            }
-            else
-            {
-                state = "BARDZO DOBRY";
-                message = "Bądź fit, idź biegać.";
-                image = "images\\run.png";
-                mainColor = Color.DARKGREEN;
+                case Color.DARKRED:
+                    state = "RYZYKOWNY";
+                    message = "Dla własnego bezpieczeństwa nie oddychaj.";
+                    image = "images\\nobreath.png";
+                    break;
+                case Color.RED:
+                    state = "BARDZO ZŁY";
+                    message = "Zamknij okna i drzwi.";
+                    image = "images\\window.png";
+                    break;
+                case Color.ORANGE:
+                    state = "ZŁY";
+                    message = "Lepiej zostań na kompie.";
+                    image = "images\\computer.png";
+                    break;
+                case Color.YELLOW:
+                    state = "ŚREDNI";
+                    message = "Kawa i ciastko z przyjacielem.";
+                    image = "images\\cake.png";
+                    break;
+                case Color.GREEN:
+                    state = "DOBRY";
+                    message = "A może na spacerek?";
+                    image = "images\\stroll.png";
+                    break;
+                default:
+                    state = "BARDZO DOBRY";
+                    message = "Bądź fit, idź biegać.";
+                    image = "images\\run.png";
+                    break;
             }
 
-            p25Color = PickColor(_p25Proc);
-            p10Color = PickColor(_p10Proc);
-            so2Color = PickColor(_so2Proc);
+            p25Color = PickColor(GetColor(_p25Proc, 0));
+            p10Color = PickColor(GetColor(_p10Proc, 1));
+            so2Color = PickColor(GetColor(_so2Proc, 2));
 
             p25Text = _p25Proc.ToString() + "%";
             p10Text = _p10Proc.ToString() + "%";

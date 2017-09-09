@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hackathon24"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
         Title="Informacje" Height="180" Width="300" Icon="images\icon.ico">
     <Window.Resources>
         <Style TargetType="TextBlock">

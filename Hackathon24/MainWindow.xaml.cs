@@ -44,6 +44,7 @@ namespace Hackathon24
             p10Button.MouseLeftButtonDown += new MouseButtonEventHandler(p10_MouseLeftButtonDown);
             so2Button.MouseLeftButtonDown += new MouseButtonEventHandler(so2_MouseLeftButtonDown);
             moreText.MouseLeftButtonDown += new MouseButtonEventHandler(moreText_MouseLeftButtonDown);
+            businessCard.MouseLeftButtonDown += new MouseButtonEventHandler(businessCard_MouseLeftButtonDown);
 
             data = new SmogDetails();
             LongMessages = new Dictionary<Color, string>();
@@ -51,8 +52,8 @@ namespace Hackathon24
             LongMessages[Color.RED] = "Kobiety w ciąży, dzieci, osoby starsze oraz osoby cierpiące na astmę, choroby płuc, alergiczne choroby skóry i oczu oraz choroby krążenia (stany pozawałowe i zaburzenia rytmu serca) powinny ograniczyć do minimum czas przebywania, a szczególnie unikać wysiłku fizycznego na otwartym powietrzu. Pozostałym zaleca się unikanie wysiłku fizycznego na otwartym powietrzu i ograniczenie palenia papierosów. W przypadku pogorszenia stanu zdrowia należy skontaktować się z lekarzem.";
             LongMessages[Color.ORANGE] = "Kobiety w ciąży, dzieci, osoby starsze oraz osoby cierpiące na astmę, choroby płuc, alergiczne choroby skóry i oczu oraz choroby krążenia(stany pozawałowe i zaburzenia rytmu serca) powinny ograniczyć czas przebywania oraz unikać wysiłku fizycznego na otwartym powietrzu. Pozostałym zaleca się zredukowanie czasu i intensywności wysiłku fizycznego na otwartym powietrzu.";
             LongMessages[Color.YELLOW] = "Kobiety w ciąży, dzieci, osoby starsze oraz osoby cierpiące na astmę, choroby płuc, alergiczne choroby skóry i oczu oraz choroby krążenia (stany pozawałowe i zaburzenia rytmu serca) powinny rozważyć ograniczenie wysiłku fizycznego na otwartym powietrzu.";
-            LongMessages[Color.GREEN] = "Możesz wyjść na świeże powietrze.";
-            LongMessages[Color.DARKGREEN] = "Możesz wyjść na świeże powietrze.";
+            LongMessages[Color.GREEN] = "Powietrze w stanie bardzo dobrym, może spacerek?";
+            LongMessages[Color.DARKGREEN] = "Powietrze  w stanie idealnym! Zalecamy przebywanie na świeżym powietrzu i korzystanie z uroków życia :]";
 
             DispatcherTimer update = new System.Windows.Threading.DispatcherTimer();
             update.Tick += new EventHandler((o, e) =>
@@ -117,6 +118,12 @@ namespace Hackathon24
         private void moreText_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             DetailWindow window = new DetailWindow(LongMessages[mainAlert]);
+            window.Show();
+        }
+
+        private void businessCard_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ContactWindow window = new ContactWindow();
             window.Show();
         }
     }
