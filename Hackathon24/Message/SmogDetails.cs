@@ -9,10 +9,6 @@ namespace Hackathon24.Message
     public class SmogDetails
     {
 
-        //Informacje o dacie i godzinie
-        public string date { get; set; }
-        public string time { get; set; }
-
         //Stan smogu i zwracana wiadomość
         public string state { get; set; }
         public string message { get; set; }
@@ -33,12 +29,6 @@ namespace Hackathon24.Message
         public string p25Color { get; set; }
         public string p10Color { get; set; }
         public string so2Color { get; set; }
-
-        public SmogDetails()
-        {
-            date = DateTime.Now.ToString().Remove(10,9);
-            time = DateTime.Now.ToString().Remove(0, 10);
-        }
 
         private string PickColor(int proc)
         {
@@ -82,37 +72,37 @@ namespace Hackathon24.Message
 
             if (max >= 200)
             {
-                state = "Masakra";
+                state = "MASAKRA";
                 message = "Dla własnego bezpieczeństwa nie oddychaj.";
                 image = "images\\nobreath.png";
             }
             else if (max >= 100)
             {
-                state = "Bardzo zły";
+                state = "BARDZO ZŁY";
                 message = "Dla własnego bezpieczeństwa zamknij okno.";
                 image = "images\\window.png";
             }
             else if (max >= 50)
             {
-                state = "Zły";
+                state = "ZŁY";
                 message = "Dla własnego bezpieczeństwa zostań przed kompem.";
                 image = "images\\computer.png";
             }
             else if(max >= 30)
             {
-                state = "Sredni";
+                state = "ŚREDNI";
                 message = "Lepiej zostać w domu, polecamy kawę i ciastko.";
                 image = "images\\cake.png";
             }
             else if (max >= 15)
             {
-                state = "Dobry";
+                state = "DOBRY";
                 message = "Idź na spacer.";
                 image = "images\\stroll.png";
             }
             else
             {
-                state = "Bardo dobry";
+                state = "BARDZO DOBRY";
                 message = "Bądź fit, idź biegać.";
                 image = "images\\run.png";
             }

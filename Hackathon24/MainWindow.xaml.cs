@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Hackathon24.Message;
+using System.Windows.Threading;
 
 namespace Hackathon24
 {
@@ -24,6 +25,13 @@ namespace Hackathon24
         public MainWindow()
         {
             InitializeComponent();
+
+            DispatcherTimer timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
+            {
+                dateBlock.Text = DateTime.Now.ToString("dd.MM.yyyy");
+                timeBlock.Text = DateTime.Now.ToString("HH:mm:ss");
+            }, Dispatcher);
+
             SmogDetails data = new SmogDetails();
             data.Update();
             DataContext = data;

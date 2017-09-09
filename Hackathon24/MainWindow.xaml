@@ -5,25 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hackathon24"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="525">
+        Title="Katowice Smog Alert" Height="800" Width="600">
+    <Window.Resources>
+        <Style x:Key="icon" TargetType="Image">
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Width" Value="40" />
+        </Style>
+        <Style x:Key="timer" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Consolas" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="10, 0, 10, 0" />
+        </Style>
+        <Style x:Key="stateMessage" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Helvetica" />
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+    </Window.Resources>
+
     <Grid>
         <StackPanel x:Name="MainPanel">
-            <Image Source="images\katowice.png" Width="500" Height="100"/>
+            <Image Source="images\katowice.png" Width="500" Height="100" Margin="0, 15, 0, 0" />
             <Image Source="images\kossutha.png" Width="300" Height="80"/>
-            <WrapPanel>
-                <Image Source="images\calendar.png" Width="60" Height="60"/>
-                <TextBlock Text="{Binding date}" />
-                <Image Source="images\clock.png" Width="60" Height="60"/>
-                <TextBlock Text="{Binding time}" />
+            <WrapPanel HorizontalAlignment="Center" Margin="0, 15, 0, 0">
+                <Image Source="images\calendar.png" Style="{StaticResource icon}" />
+                <TextBlock Name="dateBlock" Style="{StaticResource timer}" />
+                <Image Source="images\clock.png" Style="{StaticResource icon}" Margin="100, 0, 0, 0" />
+                <TextBlock Name="timeBlock" Style="{StaticResource timer}" />
             </WrapPanel>
-            <WrapPanel>
+            <WrapPanel HorizontalAlignment="Center" Margin="0, 30, 0, 30">
                 <Image x:Name="StateIcon" Source="{Binding image}" Width="100" />
-                <StackPanel>
+                <StackPanel VerticalAlignment="Center">
                     <WrapPanel>
-                        <TextBlock x:Name="StateLabel" Text="Stan:" />
-                        <TextBlock x:Name="StateContent" Margin="5, 0, 0, 0" Text="{Binding state}" />
+                        <TextBlock x:Name="StateLabel" Margin="15, 0, 0, 0" Text="STAN:" Style="{StaticResource stateMessage}" />
+                        <TextBlock x:Name="StateContent" Margin="5, 0, 0, 0" Text="{Binding state}" Style="{StaticResource stateMessage}" />
                     </WrapPanel>
-                    <TextBlock x:Name="UserMessage" Text="{Binding message}" />
+                    <TextBlock x:Name="UserMessage" Margin="15, 0, 0, 0" Text="{Binding message}" Style="{StaticResource stateMessage}" />
                 </StackPanel>
             </WrapPanel>
             <WrapPanel>
