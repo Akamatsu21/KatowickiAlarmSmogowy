@@ -7,7 +7,11 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using Hackathon24.Message;
 
+<<<<<<< HEAD
 namespace Hackathon24.Message
+=======
+namespace Hackatohon24.Message
+>>>>>>> 15525480d478d59209b53a29940264e3df868493
 {
 
     public static class Connection
@@ -34,7 +38,11 @@ namespace Hackathon24.Message
 
         public static double? GetP10Value()
         {
+<<<<<<< HEAD
             return Connection.JsonDeserializeToP10(Connection.httpConection(DustType.PM10)).values.
+=======
+            return  Connection.JsonDeserializeToP10(Connection.httpConection(DustType.PM10)).values.
+>>>>>>> 15525480d478d59209b53a29940264e3df868493
                 Where(p => p.value != null).Select(p => p.value).FirstOrDefault();
         }
 
