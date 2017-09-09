@@ -57,14 +57,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="MailsDataSet.cs">
-      <DependentUpon>MailsDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="MailsDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MailsDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Message\Connection.cs" />
     <Compile Include="Message\DustType.cs" />
     <Compile Include="Message\Payload\P10.cs" />
@@ -111,17 +103,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="MailsDataSet.xsc">
-      <DependentUpon>MailsDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="MailsDataSet.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>MailsDataSet.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="MailsDataSet.xss">
-      <DependentUpon>MailsDataSet.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
