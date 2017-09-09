@@ -36,8 +36,8 @@ namespace Hackathon24.Message
 
         public SmogDetails()
         {
-            date = "09.09.2017";
-            time = "14:00";
+            date = DateTime.Now.ToString().Remove(10,9);
+            time = DateTime.Now.ToString().Remove(0, 10);
         }
 
         private string PickColor(int proc)
