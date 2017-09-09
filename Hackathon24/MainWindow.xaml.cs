@@ -18,12 +18,24 @@ using System.Net.Mail;
 
 namespace Hackathon24
 {
+    public enum Color
+    {
+        DARKRED,
+        RED,
+        ORANGE,
+        YELLOW,
+        GREEN,
+        DARKGREEN
+    }
+
     /// <summary>
     /// Logika interakcji dla klasy MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        SmogDetails data;
+        private SmogDetails data;
+        private Dictionary<Color, String> LongMessages;
+        private Color mainAlert;
 
         public MainWindow()
         {
@@ -31,15 +43,22 @@ namespace Hackathon24
             p25Button.MouseLeftButtonDown += new MouseButtonEventHandler(p25_MouseLeftButtonDown);
             p10Button.MouseLeftButtonDown += new MouseButtonEventHandler(p10_MouseLeftButtonDown);
             so2Button.MouseLeftButtonDown += new MouseButtonEventHandler(so2_MouseLeftButtonDown);
-
-            SendEmail.SendMail();
+            moreText.MouseLeftButtonDown += new MouseButtonEventHandler(moreText_MouseLeftButtonDown);
 
             data = new SmogDetails();
+            LongMessages = new Dictionary<Color, string>();
+            LongMessages[Color.DARKRED] = "Kobiety w ciąży, dzieci, osoby starsze oraz osoby cierpiące na astmę, choroby płuc, alergiczne choroby skóry i oczu oraz choroby krążenia(stany pozawałowe i zaburzenia rytmu serca) powinny bezwzględnie ograniczyć do minimum czas przebywania, a szczególnie unikać wysiłku fizycznego na otwartym powietrzu. Pozostałym zaleca się rezygnację z wysiłku fizycznego na otwartym powietrzu i zaniechanie palenia papierosów. W przypadku pogorszenia stanu zdrowia należy skontaktować się z lekarzem.";
+            LongMessages[Color.RED] = "Kobiety w ciąży, dzieci, osoby starsze oraz osoby cierpiące na astmę, choroby płuc, alergiczne choroby skóry i oczu oraz choroby krążenia (stany pozawałowe i zaburzenia rytmu serca) powinny ograniczyć do minimum czas przebywania, a szczególnie unikać wysiłku fizycznego na otwartym powietrzu. Pozostałym zaleca się unikanie wysiłku fizycznego na otwartym powietrzu i ograniczenie palenia papierosów. W przypadku pogorszenia stanu zdrowia należy skontaktować się z lekarzem.";
+            LongMessages[Color.ORANGE] = "Kobiety w ciąży, dzieci, osoby starsze oraz osoby cierpiące na astmę, choroby płuc, alergiczne choroby skóry i oczu oraz choroby krążenia(stany pozawałowe i zaburzenia rytmu serca) powinny ograniczyć czas przebywania oraz unikać wysiłku fizycznego na otwartym powietrzu. Pozostałym zaleca się zredukowanie czasu i intensywności wysiłku fizycznego na otwartym powietrzu.";
+            LongMessages[Color.YELLOW] = "Kobiety w ciąży, dzieci, osoby starsze oraz osoby cierpiące na astmę, choroby płuc, alergiczne choroby skóry i oczu oraz choroby krążenia (stany pozawałowe i zaburzenia rytmu serca) powinny rozważyć ograniczenie wysiłku fizycznego na otwartym powietrzu.";
+            LongMessages[Color.GREEN] = "Możesz wyjść na świeże powietrze.";
+            LongMessages[Color.DARKGREEN] = "Możesz wyjść na świeże powietrze.";
 
             DispatcherTimer update = new System.Windows.Threading.DispatcherTimer();
             update.Tick += new EventHandler((o, e) =>
             {
                 data.Update();
+                mainAlert = data.GetMainColor();
                 DataContext = data;
             });
             update.Start();
@@ -55,8 +74,6 @@ namespace Hackathon24
                 {
                     SendEmail.SendMail();
                 }
-
-
             }, Dispatcher);
 
         }
@@ -94,6 +111,12 @@ namespace Hackathon24
             window.Current.Text = "Aktualna wartość: " + data.GetValue(2).ToString();
             window.Norm.Text = "Norma: 350";
             window.Diff.Text = "Przekroczenie: " + (10 - data.GetValue(2)).ToString();
+            window.Show();
+        }
+
+        private void moreText_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DetailWindow window = new DetailWindow(LongMessages[mainAlert]);
             window.Show();
         }
     }

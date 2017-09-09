@@ -31,6 +31,8 @@ namespace Hackathon24.Message
         public string p10Color { get; set; }
         public string so2Color { get; set; }
 
+        private Color mainColor;
+
         public SmogDetails()
         {
             so2 = "SO\u2082";
@@ -81,36 +83,42 @@ namespace Hackathon24.Message
                 state = "RYZYKOWNY";
                 message = "Dla własnego bezpieczeństwa nie oddychaj.";
                 image = "images\\nobreath.png";
+                mainColor = Color.DARKRED;
             }
             else if (max >= 100)
             {
                 state = "BARDZO ZŁY";
                 message = "Zamknij okna i drzwi.";
                 image = "images\\window.png";
+                mainColor = Color.RED;
             }
             else if (max >= 50)
             {
                 state = "ZŁY";
                 message = "Lepiej zostań na kompie.";
                 image = "images\\computer.png";
+                mainColor = Color.ORANGE;
             }
             else if(max >= 40)
             {
                 state = "ŚREDNI";
                 message = "Kawa i ciastko z przyjacielem.";
                 image = "images\\cake.png";
+                mainColor = Color.YELLOW;
             }
             else if (max >= 20)
             {
                 state = "DOBRY";
                 message = "A może na spacerek?";
                 image = "images\\stroll.png";
+                mainColor = Color.GREEN;
             }
             else
             {
                 state = "BARDZO DOBRY";
                 message = "Bądź fit, idź biegać.";
                 image = "images\\run.png";
+                mainColor = Color.DARKGREEN;
             }
 
             p25Color = PickColor(_p25Proc);
@@ -135,6 +143,11 @@ namespace Hackathon24.Message
                 default:
                     return null;
             }
+        }
+
+        public Color GetMainColor()
+        {
+            return mainColor;
         }
          
     }

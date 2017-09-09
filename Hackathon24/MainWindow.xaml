@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hackathon24"
         mc:Ignorable="d"
-        Title="Katowice Smog Alert" Height="900" Width="600" Icon="images\icon.ico">
+        Title="Katowicki Alarm Smogowy" Height="900" Width="600" Icon="images\icon.ico">
     <Window.Resources>
         <Style x:Key="icon" TargetType="Image">
             <Setter Property="Height" Value="40" />
@@ -24,6 +24,19 @@
             <Setter Property="FontSize" Value="18" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+
+        <Style x:Key="moreButton" TargetType="TextBlock">
+            <Setter Property="TextDecorations" Value="Underline" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="FontSize" Value="17" />
+            <Setter Property="FontFamily" Value="Helvetica" />
+            <Setter Property="Margin" Value="0, 0, 10, 0" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
         
         <Style x:Key="smogButtonText" TargetType="TextBlock">
@@ -89,6 +102,7 @@
                     <TextBlock x:Name="UserMessage" Margin="15, 0, 0, 0" Text="{Binding message}" Style="{StaticResource stateMessage}" />
                 </StackPanel>
             </WrapPanel>
+            <TextBlock Text="Więcej" Style="{StaticResource moreButton}" Name="moreText" />
             <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Border Name="p25Button" Style="{StaticResource smogButton}" BorderBrush="{Binding p25Color}">
                     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -138,7 +152,7 @@
                 </StackPanel>
             </Border>
             <Image Source="images\city.png" />
-            <TextBlock FontSize="5" Text="Grafika autorstwa Izy Dudzik" HorizontalAlignment="Center" />
+            <TextBlock FontSize="10" Text="Grafika autorstwa Izy Dudzik" HorizontalAlignment="Center" />
         </StackPanel>
     </Grid>
 </Window>

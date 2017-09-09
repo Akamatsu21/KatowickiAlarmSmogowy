@@ -57,6 +57,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DetailWindow.xaml.cs">
+      <DependentUpon>DetailWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Message\Connection.cs" />
     <Compile Include="Message\DustType.cs" />
     <Compile Include="Message\Payload\P10.cs" />
@@ -68,6 +71,10 @@
     <Compile Include="Message\SmogDetails.cs" />
     <Compile Include="SendEmail.cs" />
     <Compile Include="TestData.cs" />
+    <Page Include="DetailWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="InfoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
