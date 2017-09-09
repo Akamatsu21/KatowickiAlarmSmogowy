@@ -40,21 +40,21 @@ namespace Hackathon24.Message
         {
             if (proc >= 200)
             {
-                return "Pink";
+                return "DarkRed";
             }
             else if (proc >= 100)
             {
-                return "Purple";
+                return "Red";
             }
             else if (proc >= 50)
             {
-                return "Red";
-            }
-            else if (proc >= 30)
-            {
                 return "Orange";
             }
-            else if (proc >= 15)
+            else if (proc >= 40)
+            {
+                return "Yellow";
+            }
+            else if (proc >= 20)
             {
                 return "Green";
             }
@@ -78,32 +78,32 @@ namespace Hackathon24.Message
 
             if (max >= 200)
             {
-                state = "MASAKRA";
+                state = "RYZYKOWNY";
                 message = "Dla własnego bezpieczeństwa nie oddychaj.";
                 image = "images\\nobreath.png";
             }
             else if (max >= 100)
             {
                 state = "BARDZO ZŁY";
-                message = "Dla własnego bezpieczeństwa zamknij okno.";
+                message = "Zamknij okna i drzwi.";
                 image = "images\\window.png";
             }
             else if (max >= 50)
             {
                 state = "ZŁY";
-                message = "Dla własnego bezpieczeństwa zostań przed kompem.";
+                message = "Lepiej zostań na kompie.";
                 image = "images\\computer.png";
             }
-            else if(max >= 30)
+            else if(max >= 40)
             {
                 state = "ŚREDNI";
-                message = "Lepiej zostać w domu, polecamy kawę i ciastko.";
+                message = "Kawa i ciastko z przyjacielem.";
                 image = "images\\cake.png";
             }
-            else if (max >= 15)
+            else if (max >= 20)
             {
                 state = "DOBRY";
-                message = "Idź na spacer.";
+                message = "A może na spacerek?";
                 image = "images\\stroll.png";
             }
             else

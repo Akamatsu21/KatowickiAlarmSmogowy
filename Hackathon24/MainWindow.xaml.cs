@@ -34,7 +34,6 @@ namespace Hackathon24
 
             data = new SmogDetails();
 
-
             DispatcherTimer update = new System.Windows.Threading.DispatcherTimer();
             update.Tick += new EventHandler((o,e) => {
                 data.Update();

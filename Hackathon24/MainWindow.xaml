@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hackathon24"
         mc:Ignorable="d"
-        Title="Katowice Smog Alert" Height="800" Width="600">
+        Title="Katowice Smog Alert" Height="900" Width="600" Icon="images\icon.ico">
     <Window.Resources>
         <Style x:Key="icon" TargetType="Image">
             <Setter Property="Height" Value="40" />
@@ -56,11 +56,6 @@
             <Setter Property="FontFamily" Value="Helvetica" />
             <Setter Property="FontSize" Value="16" />
             <Setter Property="Margin" Value="0, 7, 0, 7" />
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="Black"/>
-                </Trigger>
-            </Style.Triggers>
         </Style>
 
         <Style x:Key="menuLink" TargetType="Hyperlink">
@@ -68,7 +63,7 @@
             <Setter Property="Foreground" Value="Black"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Foreground" Value="Red"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -84,7 +79,7 @@
                 <Image Source="images\clock.png" Style="{StaticResource icon}" Margin="100, 0, 0, 0" />
                 <TextBlock Name="timeBlock" Style="{StaticResource timer}" />
             </WrapPanel>
-            <WrapPanel HorizontalAlignment="Center" Margin="0, 10, 0, 0" Width="500" Height="120">
+            <WrapPanel HorizontalAlignment="Center" Margin="0, 10, 0, 10">
                 <Image x:Name="StateIcon" Source="{Binding image}" Width="100" Height="100" />
                 <StackPanel VerticalAlignment="Center">
                     <WrapPanel>
@@ -142,6 +137,8 @@
                     </TextBlock>
                 </StackPanel>
             </Border>
+            <Image Source="images\city.png" />
+            <TextBlock FontSize="5" Text="Grafika autorstwa Izy Dudzik" HorizontalAlignment="Center" />
         </StackPanel>
     </Grid>
 </Window>
