@@ -26,7 +26,7 @@
             </TextBlock>
             <TextBlock>
                 <Hyperlink RequestNavigate="Hyperlink_RequestNavigate" NavigateUri="https://www.facebook.com/oczystepowietrze/">
-                    https://www.facebook.com/oczystepowietrze/
+                    www.facebook.com/oczystepowietrze/
                 </Hyperlink>
             </TextBlock>
         </StackPanel>
