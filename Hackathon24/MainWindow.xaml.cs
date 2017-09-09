@@ -26,15 +26,23 @@ namespace Hackathon24
         {
             InitializeComponent();
 
+            SmogDetails data = new SmogDetails();
+
+            data.Update();
+            DataContext = data;
+
+            DispatcherTimer update = new DispatcherTimer(new TimeSpan(0, 30, 0), DispatcherPriority.Normal, delegate
+            {
+                data.Update();
+                DataContext = data;
+            }, Dispatcher);
+
             DispatcherTimer timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
             {
                 dateBlock.Text = DateTime.Now.ToString("dd.MM.yyyy");
                 timeBlock.Text = DateTime.Now.ToString("HH:mm:ss");
             }, Dispatcher);
 
-            SmogDetails data = new SmogDetails();
-            data.Update();
-            DataContext = data;
         }
 
         private void Hyperlink_RequestNavigate(object sender,
