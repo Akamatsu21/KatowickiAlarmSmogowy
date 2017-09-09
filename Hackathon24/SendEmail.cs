@@ -47,8 +47,9 @@ namespace Hackathon24
 
             mail.Body = body.ToString();
 
-            Attachment img = new Attachment(@"C:\Users\Hixy\Documents\hackathon24\Hackathon24\images\smog.png");
-            mail.Attachments.Add(img);
+
+            //Attachment img = new Attachment(@"images\\smog.png");
+            //mail.Attachments.Add(img);
             SmtpServer.Port = 587;
 
             SmtpServer.Credentials = new System.Net.NetworkCredential("patrykbialas", "patram17");
