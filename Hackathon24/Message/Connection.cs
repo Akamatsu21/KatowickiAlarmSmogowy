@@ -7,7 +7,7 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using Hackathon24.Message;
 
-namespace Hackatohon24.Message
+namespace Hackathon24.Message
 {
 
     public static class Connection
@@ -34,7 +34,7 @@ namespace Hackatohon24.Message
 
         public static double? GetP10Value()
         {
-            return  Connection.JsonDeserializeToP10(Connection.httpConection(DustType.PM10)).values.
+            return Connection.JsonDeserializeToP10(Connection.httpConection(DustType.PM10)).values.
                 Where(p => p.value != null).Select(p => p.value).FirstOrDefault();
         }
 
