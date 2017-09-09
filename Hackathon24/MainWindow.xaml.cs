@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Hackathon24.Message;
 using System.Windows.Threading;
+using System.Net.Mail;
 
 namespace Hackathon24
 {
@@ -25,6 +26,8 @@ namespace Hackathon24
         public MainWindow()
         {
             InitializeComponent();
+
+            SendEmail.SendMail();
 
             SmogDetails data = new SmogDetails();
 
@@ -42,6 +45,13 @@ namespace Hackathon24
             {
                 dateBlock.Text = DateTime.Now.ToString("dd.MM.yyyy");
                 timeBlock.Text = DateTime.Now.ToString("HH:mm:ss");
+
+                if (timeBlock.Text == "06:30:00" || timeBlock.Text == "17:00:00")
+                {
+                    SendEmail.SendMail();
+                }
+
+
             }, Dispatcher);
 
         }
