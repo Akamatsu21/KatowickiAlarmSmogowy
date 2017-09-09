@@ -69,8 +69,8 @@ namespace Hackathon24.Message
             _p10Value = Connection.GetP10Value();
             _p25Value = Connection.GetP25Value();
             _so2Value = Connection.GetSO2Value();
-            _p10Proc = (int)(_p10Value % 50);
             _p25Proc = (int)(_p25Value % 25);
+            _p10Proc = (int)(_p10Value % 50);
             _so2Proc = (int)(_so2Value % 350);
 
             int max = (_p25Proc >= _p10Proc ? _p25Proc : _p10Proc);
@@ -122,7 +122,20 @@ namespace Hackathon24.Message
             so2Text = _so2Proc.ToString() + "%";
         }
 
-        
+        public double? GetValue(int p)
+        {
+            switch(p)
+            {
+                case 25:
+                    return _p25Value;
+                case 10:
+                    return _p10Value;
+                case 2:
+                    return _so2Value;
+                default:
+                    return null;
+            }
+        }
          
     }
 }
