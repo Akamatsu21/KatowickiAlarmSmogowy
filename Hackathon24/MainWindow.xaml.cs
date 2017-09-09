@@ -23,13 +23,16 @@ namespace Hackathon24
     /// </summary>
     public partial class MainWindow : Window
     {
+        SmogDetails data;
+
         public MainWindow()
         {
             InitializeComponent();
+            p25Button.MouseLeftButtonDown += new MouseButtonEventHandler(p25_MouseLeftButtonDown);
+            p10Button.MouseLeftButtonDown += new MouseButtonEventHandler(p10_MouseLeftButtonDown);
+            so2Button.MouseLeftButtonDown += new MouseButtonEventHandler(so2_MouseLeftButtonDown);
 
-            SendEmail.SendMail();
-
-            SmogDetails data = new SmogDetails();
+            data = new SmogDetails();
 
 
             DispatcherTimer update = new System.Windows.Threading.DispatcherTimer();
@@ -60,6 +63,36 @@ namespace Hackathon24
                                        System.Windows.Navigation.RequestNavigateEventArgs e)
         {
             System.Diagnostics.Process.Start(e.Uri.AbsoluteUri);
+        }
+
+        private void p25_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            InfoWindow window = new InfoWindow();
+            window.Title.Text = "Pył zawieszony PM 2.5";
+            window.Current.Text = "Aktualna wartość: " + data.GetValue(25).ToString();
+            window.Norm.Text = "Norma: 25";
+            window.Diff.Text = "Przekroczenie: " + (350 - data.GetValue(25)).ToString();
+            window.Show();
+        }
+
+        private void p10_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            InfoWindow window = new InfoWindow();
+            window.Title.Text = "Pył zawieszony PM 10";
+            window.Current.Text = "Aktualna wartość: " + data.GetValue(10).ToString();
+            window.Norm.Text = "Norma: 50";
+            window.Diff.Text = "Przekroczenie: " + (50 - data.GetValue(10)).ToString();
+            window.Show();
+        }
+
+        private void so2_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            InfoWindow window = new InfoWindow();
+            window.Title.Text = "Dwutlenek siarki SO\u2082";
+            window.Current.Text = "Aktualna wartość: " + data.GetValue(2).ToString();
+            window.Norm.Text = "Norma: 350";
+            window.Diff.Text = "Przekroczenie: " + (10 - data.GetValue(2)).ToString();
+            window.Show();
         }
     }
 }
