@@ -8,6 +8,7 @@ namespace Hackathon24.Message
 {
     public class SmogDetails
     {
+        public string so2 { get; set; }
 
         //Stan smogu i zwracana wiadomość
         public string state { get; set; }
@@ -29,6 +30,11 @@ namespace Hackathon24.Message
         public string p25Color { get; set; }
         public string p10Color { get; set; }
         public string so2Color { get; set; }
+
+        public SmogDetails()
+        {
+            so2 = "SO\u2082";
+        }
 
         private string PickColor(int proc)
         {
@@ -111,9 +117,9 @@ namespace Hackathon24.Message
             p10Color = PickColor(_p10Proc);
             so2Color = PickColor(_so2Proc);
 
-            p25Text = "PM 2.5%" + Environment.NewLine + _p25Proc.ToString() + "%";
-            p10Text = "PM 10%" + Environment.NewLine + _p10Proc.ToString() + "%";
-            so2Text = "SO\u2082" + Environment.NewLine + _so2Proc.ToString() + "%";
+            p25Text = _p25Proc.ToString() + "%";
+            p10Text = _p10Proc.ToString() + "%";
+            so2Text = _so2Proc.ToString() + "%";
         }
 
         

@@ -11,16 +11,33 @@
             <Setter Property="Height" Value="40" />
             <Setter Property="Width" Value="40" />
         </Style>
+        
         <Style x:Key="timer" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Consolas" />
             <Setter Property="FontSize" Value="20" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Margin" Value="10, 0, 10, 0" />
         </Style>
+        
         <Style x:Key="stateMessage" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Helvetica" />
             <Setter Property="FontSize" Value="30" />
             <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        
+        <Style x:Key="smogButtonText" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Verdana" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <Style x:Key="smogButton" TargetType="Border">
+            <Setter Property="BorderThickness" Value="3" />
+            <Setter Property="CornerRadius" Value="100" />
+            <Setter Property="Width" Value="120" />
+            <Setter Property="Height" Value="120" />
+            <Setter Property="Margin" Value="10, 0, 10, 0" />
         </Style>
     </Window.Resources>
 
@@ -44,15 +61,24 @@
                     <TextBlock x:Name="UserMessage" Margin="15, 0, 0, 0" Text="{Binding message}" Style="{StaticResource stateMessage}" />
                 </StackPanel>
             </WrapPanel>
-            <WrapPanel>
-                <Border CornerRadius="100" BorderBrush="{Binding p25Color}" BorderThickness="3" Width="80" Height="80">
-                    <TextBlock Text="{Binding p25Text}" VerticalAlignment="Center" TextAlignment="Center" />
+            <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Border Style="{StaticResource smogButton}" BorderBrush="{Binding p25Color}">
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Text="PM 2.5%" Style="{StaticResource smogButtonText}" />
+                        <TextBlock Text="{Binding p25Text}" Style="{StaticResource smogButtonText}" Foreground="{Binding p25Color}" />
+                    </StackPanel>
                 </Border>
-                <Border CornerRadius="100" BorderBrush="{Binding p10Color}" BorderThickness="3" Width="80" Height="80">
-                    <TextBlock Text="{Binding p10Text}" VerticalAlignment="Center" TextAlignment="Center" />
+                <Border Style="{StaticResource smogButton}" BorderBrush="{Binding p10Color}">
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Text="PM 10%" Style="{StaticResource smogButtonText}" />
+                        <TextBlock Text="{Binding p10Text}" Style="{StaticResource smogButtonText}" Foreground="{Binding p10Color}" />
+                    </StackPanel>
                 </Border>
-                <Border CornerRadius="100" BorderBrush="{Binding so2Color}" BorderThickness="3" Width="80" Height="80">
-                    <TextBlock Text="{Binding so2Text}" VerticalAlignment="Center" TextAlignment="Center" />
+                <Border Style="{StaticResource smogButton}" BorderBrush="{Binding so2Color}">
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding so2}" Style="{StaticResource smogButtonText}" />
+                        <TextBlock Text="{Binding so2Text}" Style="{StaticResource smogButtonText}" Foreground="{Binding so2Color}" />
+                    </StackPanel>
                 </Border>
             </WrapPanel>
             <TextBlock>
