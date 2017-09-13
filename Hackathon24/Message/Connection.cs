@@ -5,13 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json;
-using Hackathon24.Message;
+using KatowickiAlarmSmogowy.Message;
 
-namespace Hackathon24.Message
+namespace KatowickiAlarmSmogowy.Message
 {
-
+    //Klasa do pobierania danych z API
     public static class Connection
     {
+        //Pobranie danych w JSON-ie
         private static string httpConection(DustType id)
         {
             int temp = (int)id;
@@ -19,6 +20,7 @@ namespace Hackathon24.Message
             return new HttpClient().GetAsync(url).Result.Content.ReadAsStringAsync().Result;
         }
 
+        //Deserializacja JSON-a do odpowiadającyh klas
         private static P10Wrapper JsonDeserializeToP10(string url)
         {
             return JsonConvert.DeserializeObject<P10Wrapper>(url);
@@ -32,6 +34,7 @@ namespace Hackathon24.Message
             return JsonConvert.DeserializeObject<SO2Wrapper>(url);
         }
 
+        //Zwrócenie interesującyhc nas wartości
         public static double? GetP10Value()
         {
             return Connection.JsonDeserializeToP10(Connection.httpConection(DustType.PM10)).values.

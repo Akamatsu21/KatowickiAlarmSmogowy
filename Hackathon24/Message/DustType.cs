@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Hackathon24.Message
+namespace KatowickiAlarmSmogowy.Message
 {
+    //Enum zawierający typy zanieczyszczeń i ich ID w API
     public enum DustType
     {
         PM10 = 5376,

@@ -12,11 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Hackathon24.Message;
+using KatowickiAlarmSmogowy.Message;
 using System.Windows.Threading;
 using System.Net.Mail;
 
-namespace Hackathon24
+namespace KatowickiAlarmSmogowy
 {
     public enum Color
     {
@@ -28,18 +28,17 @@ namespace Hackathon24
         DARKGREEN
     }
 
-    /// <summary>
-    /// Logika interakcji dla klasy MainWindow.xaml
-    /// </summary>
+    //Główne okno aplikacji
     public partial class MainWindow : Window
     {
-        private SmogDetails data;
-        private Dictionary<Color, String> LongMessages;
-        private Color mainAlert;
-        private SendEmail sendEmail;
+        private SmogDetails data;                       //obiekt przechowujący dane o stanie powietrza
+        private Dictionary<Color, String> LongMessages; //komentarze do poszczególnych stanów zanieczyszczenia
+        private Color mainAlert;                        //kolor głównego komunikatu
+        private SendEmail sendEmail;                    //obiekt wysyłający maile
 
         public MainWindow()
         {
+            //Inicjalizacja i przypisanie zdarzeń dla przycisków
             InitializeComponent();
             p25Button.MouseLeftButtonDown += new MouseButtonEventHandler(p25_MouseLeftButtonDown);
             p10Button.MouseLeftButtonDown += new MouseButtonEventHandler(p10_MouseLeftButtonDown);
@@ -49,7 +48,9 @@ namespace Hackathon24
 
             sendEmail = new SendEmail();
             data = new SmogDetails();
-            data.Update();
+            data.Update(); //pobranie danych z API
+
+            //Przypisanie komentarzy do odpowiadających kolorów
             LongMessages = new Dictionary<Color, string>();
             LongMessages[Color.DARKRED] = "Kobiety w ciąży, dzieci, osoby starsze oraz osoby cierpiące na astmę, choroby płuc, alergiczne choroby skóry i oczu oraz choroby krążenia(stany pozawałowe i zaburzenia rytmu serca) powinny bezwzględnie ograniczyć do minimum czas przebywania, a szczególnie unikać wysiłku fizycznego na otwartym powietrzu. Pozostałym zaleca się rezygnację z wysiłku fizycznego na otwartym powietrzu i zaniechanie palenia papierosów. W przypadku pogorszenia stanu zdrowia należy skontaktować się z lekarzem.";
             LongMessages[Color.RED] = "Kobiety w ciąży, dzieci, osoby starsze oraz osoby cierpiące na astmę, choroby płuc, alergiczne choroby skóry i oczu oraz choroby krążenia (stany pozawałowe i zaburzenia rytmu serca) powinny ograniczyć do minimum czas przebywania, a szczególnie unikać wysiłku fizycznego na otwartym powietrzu. Pozostałym zaleca się unikanie wysiłku fizycznego na otwartym powietrzu i ograniczenie palenia papierosów. W przypadku pogorszenia stanu zdrowia należy skontaktować się z lekarzem.";
@@ -57,7 +58,8 @@ namespace Hackathon24
             LongMessages[Color.YELLOW] = "Kobiety w ciąży, dzieci, osoby starsze oraz osoby cierpiące na astmę, choroby płuc, alergiczne choroby skóry i oczu oraz choroby krążenia (stany pozawałowe i zaburzenia rytmu serca) powinny rozważyć ograniczenie wysiłku fizycznego na otwartym powietrzu.";
             LongMessages[Color.GREEN] = "Powietrze w stanie bardzo dobrym, może spacerek?";
             LongMessages[Color.DARKGREEN] = "Powietrze  w stanie idealnym! Zalecamy przebywanie na świeżym powietrzu i korzystanie z uroków życia :]";
-
+            
+            //Pobranie danych od nowa
             DispatcherTimer update = new System.Windows.Threading.DispatcherTimer();
             update.Tick += new EventHandler((o, e) =>
             {
@@ -66,10 +68,11 @@ namespace Hackathon24
                 DataContext = data;
             });
             update.Start();
-            update.Interval = new TimeSpan(0, 30, 0);
+            update.Interval = new TimeSpan(0, 30, 0); //wykonuj co 30 minut
 
-
-            DispatcherTimer timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
+            //Wyślij email o 6:30 i 17:00
+            //Ta część powinna być odkomentowana tylko w wersji admin!
+            /*DispatcherTimer timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
             {
                 dateBlock.Text = DateTime.Now.ToString("dd.MM.yyyy");
                 timeBlock.Text = DateTime.Now.ToString("HH:mm:ss");
@@ -79,15 +82,17 @@ namespace Hackathon24
                     sendEmail.SendMail(LongMessages[mainAlert], data.p25Text, data.p10Text, data.so2Text);
                 }
             }, Dispatcher);
-
+            */
         }
 
+        //Funkcja umożliwiająca przejście do adresu internetowego po kliknięciu Hyperlinku
         private void Hyperlink_RequestNavigate(object sender,
                                        System.Windows.Navigation.RequestNavigateEventArgs e)
         {
             System.Diagnostics.Process.Start(e.Uri.AbsoluteUri);
         }
 
+        //Trzy funkcje wyślwietlające szczegółowe informacje po kliknięciu w kolorowe okręgi
         private void p25_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             InfoWindow window = new InfoWindow();
@@ -118,12 +123,14 @@ namespace Hackathon24
             window.Show();
         }
 
+        //Wyświetl szczegółowe informacje
         private void moreText_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             DetailWindow window = new DetailWindow(LongMessages[mainAlert]);
             window.Show();
         }
 
+        //Wyświetl informacje kontaktowe
         private void businessCard_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             ContactWindow window = new ContactWindow();

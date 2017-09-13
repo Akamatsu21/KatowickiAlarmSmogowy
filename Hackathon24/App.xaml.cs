@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Hackathon24
+namespace KatowickiAlarmSmogowy
 {
     /// <summary>
     /// Logika interakcji dla klasy App.xaml

@@ -12,11 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Hackathon24
+namespace KatowickiAlarmSmogowy
 {
-    /// <summary>
-    /// Logika interakcji dla klasy InfoWindow.xaml
-    /// </summary>
+    //Okno przechowujące szczegółowe informacje o poszczególnych typach zanieczyszczeń
     public partial class InfoWindow : Window
     {
         public InfoWindow()

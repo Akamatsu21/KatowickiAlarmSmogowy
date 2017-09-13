@@ -12,17 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Hackathon24
+namespace KatowickiAlarmSmogowy
 {
-    /// <summary>
-    /// Logika interakcji dla klasy DetailWindow.xaml
-    /// </summary>
-
     public class DataStruct
     {
         public string Message { get; set; }
     }
 
+    //Okno wyświetlające tekst przekazany jako argument do konstruktora
     public partial class DetailWindow : Window
     {
         public DetailWindow(string message)

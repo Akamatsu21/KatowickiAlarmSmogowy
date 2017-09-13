@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Hackathon24.Message
+namespace KatowickiAlarmSmogowy.Message
 {
     public class P25Wrapper
     {

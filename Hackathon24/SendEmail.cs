@@ -1,4 +1,4 @@
-﻿using Hackathon24.Message;
+﻿using KatowickiAlarmSmogowy.Message;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,26 +11,27 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hackathon24
+namespace KatowickiAlarmSmogowy
 {
+    //Klasa zajmująca się wysyłaniem emaili
     public class SendEmail
     {
         public void SendMail(string longMessage, string p25, string p10, string so2)
         {
-            string data = DateTime.Now.ToString("dd.MM.yyyy");
+            string title = DateTime.Now.ToString("dd.MM.yyyy");
             int period = DateTime.Now.Hour;
-
+            
             MailMessage mail = new MailMessage();
             SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
             mail.From = new MailAddress("SmogStatus@Katowice.pl");
 
-            string[] lines = System.IO.File.ReadAllLines(@"C:\Users\Hixy\Documents\hackathon24\Hackathon24\Mails.txt");
-
+            //Wczytaj plik z listą mailową i dodaj wszystkich jako adresatów
+            string[] lines = System.IO.File.ReadAllLines(@"Mails.txt");
             foreach (var line in lines)
                 mail.To.Add(line);
 
-            data += period > 10 ? "KATOWICKI ALARM SMOGOWY WIECZORNY" : " KATOWICKI ALARM SMOGOWY PORANNY";
-            mail.Subject = data;
+            title += period > 10 ?  " KATOWICKI ALARM SMOGOWY WIECZORNY" : " KATOWICKI ALARM SMOGOWY PORANNY";
+            mail.Subject = title;
 
             StringBuilder body = new StringBuilder(@"Szanowni Państwo,"); body.AppendLine().AppendLine();
             body.Append(@"Przesyłam aktualne dane dotyczące przekroczenia norm zanieczyszczenia powietrza:"); body.AppendLine().AppendLine();
@@ -53,7 +54,9 @@ namespace Hackathon24
 
             SmtpServer.Port = 587;
 
-            SmtpServer.Credentials = new System.Net.NetworkCredential("patrykbialas", "patram17");
+            //Wczytaj informacje do logowania z pliku
+            string[] creds = System.IO.File.ReadAllLines(@"Credentials.txt");
+            SmtpServer.Credentials = new System.Net.NetworkCredential(creds[0], creds[1]);
 
             SmtpServer.EnableSsl = true;
             SmtpServer.DeliveryMethod = SmtpDeliveryMethod.Network;

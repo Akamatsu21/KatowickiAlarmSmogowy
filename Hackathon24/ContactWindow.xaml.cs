@@ -12,11 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Hackathon24
+namespace KatowickiAlarmSmogowy
 {
-    /// <summary>
-    /// Logika interakcji dla klasy ContactWindow.xaml
-    /// </summary>
+    //Okno zawierające informacje kontaktowe
     public partial class ContactWindow : Window
     {
         public ContactWindow()
@@ -24,6 +22,7 @@ namespace Hackathon24
             InitializeComponent();
         }
 
+        //Funkcja umożliwiająca przejście do adresu internetowego po kliknięciu Hyperlinku
         private void Hyperlink_RequestNavigate(object sender,
                                        System.Windows.Navigation.RequestNavigateEventArgs e)
         {
